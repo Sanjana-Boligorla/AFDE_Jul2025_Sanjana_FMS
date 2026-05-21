@@ -10,9 +10,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from database import Base, engine, check_connection
 from routers.feedback import router as feedback_router
+from routers.etl import router as etl_router
+from etl.etl_pipeline import ensure_etl_tables
 
 # ─── Create tables (if not already present) ──────────────────
 Base.metadata.create_all(bind=engine)
+ensure_etl_tables()   # create ETL tables so analytics endpoint never crashes on first load
 
 # ─── Application instance ─────────────────────────────────────
 app = FastAPI(
@@ -45,6 +48,7 @@ app.add_middleware(
 
 # ─── Routers ──────────────────────────────────────────────────
 app.include_router(feedback_router, prefix="/api")
+app.include_router(etl_router, prefix="/api")
 
 
 # ─── Root & Health endpoints ──────────────────────────────────
