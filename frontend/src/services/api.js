@@ -38,4 +38,12 @@ export const dashboardApi = {
   getStats: () => api.get('/dashboard/stats'),
 }
 
+// ── ETL ───────────────────────────────────────────────────────
+export const etlApi = {
+  listDatasets:  ()         => api.get('/etl/datasets'),
+  run:           (filename) => api.post('/etl/run', null, { params: { filename }, timeout: 60000 }),
+  getAnalytics:  ()         => api.get('/etl/analytics'),
+  getHistory:    ()         => api.get('/etl/history'),
+}
+
 export default api

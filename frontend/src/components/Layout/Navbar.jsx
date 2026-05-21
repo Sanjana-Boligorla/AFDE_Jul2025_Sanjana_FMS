@@ -6,6 +6,7 @@ const titles = {
   '/feedback':{ title: 'All Feedback',    sub: 'Browse and search feedback records' },
   '/submit':  { title: 'Submit Feedback', sub: 'Add a new feedback entry' },
   '/admin':   { title: 'Admin Panel',     sub: 'Manage and moderate feedback records' },
+  '/etl':     { title: 'ETL Analytics',   sub: 'Import, transform, and analyze feedback datasets' },
 }
 
 export default function Navbar() {
